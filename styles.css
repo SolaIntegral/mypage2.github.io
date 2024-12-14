@@ -1,0 +1,315 @@
+/* スタートアニメーション */
+.logo_fadein {
+    background: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo_fadein p {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* 初期状態で非表示 */
+    z-index: 9999;
+    width: 280px;
+
+    /* Flexbox を使用して中央配置 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body {
+    margin: 0;
+    padding: 20px; /* 画面端から全体的に20pxの余白を設定 */
+    background-color: #f5f5f5; /* 背景色を設定（オプション） */
+    font-family: Arial, sans-serif; /* フォントを統一 */
+}
+
+
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ナビゲーションバー */
+nav {
+    max-width: 1200px; /* ナビゲーションバーの最大幅を設定 */
+    margin: 0 auto; /* 中央揃え */
+    background-color: #f8f9fa;
+    padding: 10px 20px; /* 上下: 10px、左右: 50px */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* リンクを中央揃え */
+    border-bottom: 1px solid #ddd; /* 下部に境界線を追加 */
+    justify-content: space-between; /* 左右にスペースを設ける */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ナビゲーションの下に影を追加 */
+    border-radius: 8px; /* 全体を少し丸みを持たせる */
+}
+
+/* リストのスタイル */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 15px; /* リンク間のスペースを設定 */
+}
+nav ul{
+    display: flex; /* 横並び */
+}
+/* リストアイテム */
+nav ul li {
+    list-style: none;
+    width: 130px; /* 各アイテムの固定幅 */
+    overflow: hidden;
+    flex: 1;
+    margin: 0 10px; /* 左右に10pxの余白を追加 */
+    border-radius: 20px;
+}
+
+/* リンクのスタイル */
+nav ul li a {
+    display: flex; /* 中央揃えのため */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px; /* 内側の余白を調整 */
+    text-decoration: none;
+    color: #00afcc;
+    font-weight: bold;
+    transition: color 0.3s;
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+/* 背景エフェクト */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    right: 0%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(to left, #fff 34%, #ff6f61 34%, #ffcc33 66%, #00afcc 66%);
+    z-index: -1;
+}
+
+/* ホバー効果 */
+nav ul li a:hover {
+    color: #fff;
+}
+
+nav ul li a:hover::after {
+    right: -200%;
+}
+
+/* 動画 */
+video {
+    max-width: 100%;
+    max-height: 100vh;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    background-color: #fff;
+}
+
+.blue-box {
+    background-color: #00afcc; /* 背景色を青に設定 */
+    color: white; /* テキスト色を白に設定 */
+    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
+    border-radius: 8px; /* 角を丸く */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 20px auto; /* 上下に余白、中央揃え */
+    font-size: 16px; /* フォントサイズを調整 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
+}
+
+.blue-box ul {
+    list-style: none; /* リストマーカーを非表示 */
+    padding: 0; /* 余白をリセット */
+    margin: 0; /* 余白をリセット */
+}
+.blue-box li:last-child {
+    margin-bottom: 0; /* 最後の項目の余白を削除 */
+}
+.blue-box li {
+    display: block; /* 各リストアイテムをブロック要素として扱う */
+    margin-bottom: 10px; /* 各項目の間に余白を追加 */
+    font-size: 25px; /* フォントサイズを調整 */
+}
+.blue-box li strong {
+    display: inline-block; /* ラベルを独立したブロック要素に */
+    margin-right: 10px; /* ラベルと値の間に余白を追加 */
+    font-weight: bold; /* 太字 */
+}
+.blue-box span {
+    text-align: left; /* 内容部分を左揃え */
+    flex-grow: 1; /* 必要に応じて幅を拡張 */
+    margin-left: 10px; /* ラベルと内容の間に余白を追加 */
+    word-wrap: break-word; /* 長い内容を折り返す */
+}
+
+.white-box {
+    background-color: #fff; /* 背景色を青に設定 */
+    color: black; /* テキスト色を白に設定 */
+    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
+    border-radius: 8px; /* 角を丸く */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 20px auto; /* 上下に余白、中央揃え */
+    font-size: 16px; /* フォントサイズを調整 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
+}
+
+.white-box ul {
+    list-style: none; /* リストマーカーを非表示 */
+    padding: 0; /* 余白をリセット */
+    margin: 0; /* 余白をリセット */
+}
+.white-box li:last-child {
+    margin-bottom: 0; /* 最後の項目の余白を削除 */
+}
+.white-box li {
+    display: block; /* 各リストアイテムをブロック要素として扱う */
+    margin-bottom: 10px; /* 各項目の間に余白を追加 */
+    font-size: 25px; /* フォントサイズを調整 */
+}
+.white-box li strong {
+    display: inline-block; /* ラベルを独立したブロック要素に */
+    margin-right: 10px; /* ラベルと値の間に余白を追加 */
+    font-weight: bold; /* 太字 */
+}
+.white-box span {
+    text-align: left; /* 内容部分を左揃え */
+    flex-grow: 1; /* 必要に応じて幅を拡張 */
+    margin-left: 10px; /* ラベルと内容の間に余白を追加 */
+    word-wrap: break-word; /* 長い内容を折り返す */
+}
+
+.container {
+    background-color: #fff; /* 背景色を青に設定 */
+    color: black; /* テキスト色を白に設定 */
+    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
+    border-radius: 8px; /* 角を丸く */
+    max-width: 1200px; /* 最大幅を設定 */
+    margin: 20px auto; /* 上下に余白、中央揃え */
+    font-size: 16px; /* フォントサイズを調整 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
+    text-align: center; /* テキストを中央揃え */
+}
+
+h1 {
+    font-size: 40px; /* 見出しのフォントサイズを大きく */
+    margin: 50px auto; /* 見出しと内容の間の余白を増やす */
+    font-weight: bold; /* 太字に */
+    max-width: 1200px; /* 最大幅を設定 */
+    text-align:center
+}
+h2 {
+    font-size: 30px; /* 見出しのフォントサイズを大きく */
+    margin-bottom: 20px; /* 見出しと内容の間の余白を増やす */
+    font-weight: bold; /* 太字に */
+    text-align: left; /* テキストを左寄せ */
+}
+h3 {
+    font-size: 30px; /* 見出しのフォントサイズを大きく */
+    margin: 20px auto; /* 見出しと内容の間の余白を増やす */
+    font-weight: bold; /* 太字に */
+    max-width: 1200px; /* 最大幅を設定 */
+    text-align:left;
+}
+ul.details {
+    list-style: none;
+    padding: 0;
+    display: inline-block; /* リストを中央揃えするためにインラインブロック */
+    text-align: left; /* テキストを左寄せ */
+}
+ul.details li {
+    display: block; /* 各リストアイテムをブロック要素として扱う */
+    margin-bottom: 10px;
+    font-size: 25px; /* フォントサイズを調整 */
+}
+.details li strong {
+    margin-right: 10px; /* ラベルと値の間に余白を追加 */
+    font-weight: bold; /* 太字 */
+    display: flex; /* Flexbox を有効に */
+    flex-direction: column; /* 縦方向に要素を配置 */
+    align-items: center; /* 中央揃え */
+    justify-content: center; /* 垂直方向の中央揃え */
+    padding: 20px; /* 内側の余白 */
+}
+
+
+
+/* ポップアップ */
+#popup {
+    width: 400px;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        width: auto;
+        margin: 5px 0;
+    }
+
+    #popup {
+        width: 90%;
+    }
+
+    .blue-box, .white-box, .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .blue-box li, .white-box li {
+        font-size: 18px;
+    }
+}
+
+
+#popup-content {
+    max-height: 300px; /* 最大高さを設定 */
+    overflow-y: auto; /* 内容が多い場合スクロール */
+}
+
+
+#popup-close {
+    color: #333;
+}
+
+#overlay {
+    background: rgba(0, 0, 0, 0.5);
+}

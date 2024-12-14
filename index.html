@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sola</title>
+    <style>
+        /* blue-boxとwhite-boxのホバー時のアニメーション */
+        .blue-box, .white-box {
+            transition: all 0.3s ease-in-out; /* スムーズなアニメーション */
+            position: relative; /* ホバー効果用にrelativeを指定 */
+            cursor: pointer; /* カーソルをポインターに変更 */
+        }
+
+        .blue-box:hover, .white-box:hover {
+            transform: translateY(-5px); /* 上に少し移動 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を強調 */
+            background-color: #00d1ff; /* 背景色を少し明るく */
+        }
+
+        .blue-box:hover h2, .white-box:hover h2 {
+            color: #fff; /* タイトルの文字色を白に変更 */
+            transition: color 0.3s ease-in-out; /* 文字色の変化をスムーズに */
+        }
+
+        .blue-box:hover li, .white-box:hover li {
+            color: #f0f8ff; /* リストの文字色を変更 */
+            transition: color 0.3s ease-in-out; /* 文字色の変化をスムーズに */
+        }
+
+        /* ホバー時の背景エフェクトを追加 */
+        .blue-box::before, .white-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .blue-box:hover::before, .white-box:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo_fadein">
+        <p><img src="logo1.png" alt="Logo"></p>
+    </div>
+
+    <video src="video1.mp4" autoplay muted playsinline loop></video>
+
+    <div id="content">
+        <div class="blue-box" onclick="location.href='p1.html';" style="cursor: pointer;" >
+        <h2>About</h2>
+        <ul>
+            <li><strong>Name:</strong> 大浦　空</li>
+            <li><strong>Occupation:</strong> 大学2年生</li>
+            <li><strong>Language:</strong> 中級レベルの英語<br>　　　　　　TOEIC 675, 2024<br></li>
+            <li><strong>Strengths:</strong> PowerPointのスキルに優れる<br>　　　　　　行動力がある / リーダーシップを発揮できる</li>
+        </ul>
+        </div>
+
+        <div class="white-box" onclick="location.href='p1.html';" style="cursor: pointer;">
+            <h2>Achievements</h2>
+            <ul class="details">
+                <li>10/6/2024 千葉県オープンデータコネクティッドアイデアソン<br>　　　　　千葉銀行賞 JMAS賞 シビックテック賞</li>
+                <li>11/3/2024 SPAJAM道場 最優秀賞</li>
+            </ul>
+        </div>
+
+        <div class="white-box" onclick="location.href='p2.html';" style="cursor: pointer;">
+            <h2>Products</h2>
+            <ul class="details">
+                <li><strong style="text-align:center">On Developing:</strong></li>
+                <ul>
+                    <li>タスク管理アプリ (Glide)</li>
+                    <li>引っ越し支援アプリ (FlutterFlow)</li>
+                    <li>予定共有アプリ-visuy- (FlutterFlow)</li>
+                </ul>
+                <li><strong style="text-align:center">Developed:</strong></li>
+                <ul>
+                    <li>Galringal</li>
+                </ul>
+            </ul>        
+        </div>
+    </div>
+
+    <div class="white-box" onclick="location.href='p3.html';" style="cursor: pointer;">
+        <h2>Diary</h2>
+        <ul class="details">
+            <li>2024/11/23　サイト作成</li>
+        </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+            const fadeInTime = 1000;  // フェードイン時間
+            const fadeOutTime = 1000; // フェードアウト時間
+            const displayDuration = 2500; // 表示時間
+
+            // ページを直接開いた場合のみロゴアニメーションを再生
+            if (document.referrer === "" || !document.referrer.includes(window.location.origin)) {
+                // ロゴをフェードイン
+                setTimeout(function () {
+                    $('.logo_fadein p').fadeIn(fadeInTime);
+                }, 500);
+
+                // 背景をフェードアウト
+                setTimeout(function () {
+                    $('.logo_fadein').fadeOut(fadeOutTime);
+                }, displayDuration);
+            } else {
+                // 他のページから遷移してきた場合はロゴを即座に非表示
+                $('.logo_fadein').remove();
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
