@@ -8,6 +8,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sola</title>
+    <style>
+        /* blue-boxとwhite-boxのホバー時のアニメーション */
+        .blue-box {
+            transition: all 0.3s ease-in-out; /* スムーズなアニメーション */
+            position: relative; /* ホバー効果用にrelativeを指定 */
+            cursor: pointer; /* カーソルをポインターに変更 */
+        }
+
+        .blue-box:hover {
+            transform: translateY(-5px); /* 上に少し移動 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を強調 */
+            background-color: #00d1ff; /* 背景色を少し明るく */
+        }
+
+        /* ホバー時の背景エフェクトを追加 */
+        .blue-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .blue-box:hover::before {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <div id="content">
@@ -45,9 +77,9 @@
 
     <h3 style="margin-top: 40px;">Developed:</h3>
 
-    <div class="white-box">
-        <h2>公約翻訳アプリ-ギャルリンガル-</h2>
-        <ul>
+    <div class="blue-box" style="background-color: #fff;">
+        <h2 style="color: black;">公約翻訳アプリ-ギャルリンガル-</h2>
+        <ul style="color: black;">
             <li><strong>development environment:</strong>Monaca</li>
         </ul>
     </div>
