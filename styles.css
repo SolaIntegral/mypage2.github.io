@@ -159,53 +159,6 @@ video {
     word-wrap: break-word; /* 長い内容を折り返す */
 }
 
-.white-box {
-    background-color: #fff; /* 背景色を青に設定 */
-    color: black; /* テキスト色を白に設定 */
-    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
-    border-radius: 8px; /* 角を丸く */
-    max-width: 1200px; /* 最大幅を設定 */
-    margin: 20px auto; /* 上下に余白、中央揃え */
-    font-size: 16px; /* フォントサイズを調整 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
-}
-
-.white-box ul {
-    list-style: none; /* リストマーカーを非表示 */
-    padding: 0; /* 余白をリセット */
-    margin: 0; /* 余白をリセット */
-}
-.white-box li:last-child {
-    margin-bottom: 0; /* 最後の項目の余白を削除 */
-}
-.white-box li {
-    display: block; /* 各リストアイテムをブロック要素として扱う */
-    margin-bottom: 10px; /* 各項目の間に余白を追加 */
-    font-size: 25px; /* フォントサイズを調整 */
-}
-.white-box li strong {
-    display: inline-block; /* ラベルを独立したブロック要素に */
-    margin-right: 10px; /* ラベルと値の間に余白を追加 */
-    font-weight: bold; /* 太字 */
-}
-.white-box span {
-    text-align: left; /* 内容部分を左揃え */
-    flex-grow: 1; /* 必要に応じて幅を拡張 */
-    margin-left: 10px; /* ラベルと内容の間に余白を追加 */
-    word-wrap: break-word; /* 長い内容を折り返す */
-}
-
-.container {
-    background-color: #fff; /* 背景色を青に設定 */
-    color: black; /* テキスト色を白に設定 */
-    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
-    border-radius: 8px; /* 角を丸く */
-    max-width: 1200px; /* 最大幅を設定 */
-    margin: 20px auto; /* 上下に余白、中央揃え */
-    font-size: 16px; /* フォントサイズを調整 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
-    text-align: center; /* テキストを中央揃え */
-}
 
 h1 {
     font-size: 40px; /* 見出しのフォントサイズを大きく */
@@ -227,32 +180,12 @@ h3 {
     max-width: 1200px; /* 最大幅を設定 */
     text-align:left;
 }
-ul.details {
-    list-style: none;
-    padding: 0;
-    display: inline-block; /* リストを中央揃えするためにインラインブロック */
-    text-align: left; /* テキストを左寄せ */
-}
-ul.details li {
-    display: block; /* 各リストアイテムをブロック要素として扱う */
-    margin-bottom: 10px;
-    font-size: 25px; /* フォントサイズを調整 */
-}
-.details li strong {
-    margin-right: 10px; /* ラベルと値の間に余白を追加 */
-    font-weight: bold; /* 太字 */
-    display: flex; /* Flexbox を有効に */
-    flex-direction: column; /* 縦方向に要素を配置 */
-    align-items: center; /* 中央揃え */
-    justify-content: center; /* 垂直方向の中央揃え */
-    padding: 20px; /* 内側の余白 */
-}
 
 
 
 /* ポップアップ */
 #popup {
-    width: 400px;
+    width: 700px;
     max-width: 90%;
     padding: 20px;
     border-radius: 10px;
