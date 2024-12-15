@@ -20,21 +20,21 @@ $(document).ready(function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // タスク管理アプリのボックスをクリックした時の処理
-    document.querySelectorAll('.blue-box h2,.white-box h2').forEach(function (box) {
+    // blue-box全体をクリック可能にする
+    document.querySelectorAll('.blue-box').forEach(function (box) {
         box.addEventListener('click', function () {
-            const appTitle = this.textContent;
+            const appTitle = this.querySelector('h2').textContent.trim(); // h2のタイトルを取得
             let content = '';
 
             // アプリごとの詳細内容を設定
             if (appTitle === 'タスク管理アプリ') {
-                content = '<h2>タスク管理アプリ</h2><p>開発環境: Glide</p>';
+                content = '<h2>タスク管理アプリ</h2><p>開発環境: Glide</p><p>プライベートで開発中</p>';
             } else if (appTitle === '引っ越し支援アプリ') {
-                content = '<h2>引っ越し支援アプリ</h2><p>開発環境: Flutter Flow</p>';
+                content = '<h2>引っ越し支援アプリ</h2><p>開発環境: Flutter Flow</p><p>UDCにむけて開発中</p>';
             } else if (appTitle === '予定共有アプリ-visuy-') {
-                content = '<h2>予定共有アプリ-visuy-</h2><p>開発環境: Flutter Flow</p>';
+                content = '<h2>予定共有アプリ-visuy-</h2><p>開発環境: Flutter Flow</p><p>SPAJAM2024予選でプロトタイプ開発</p>';
             } else if (appTitle === '公約翻訳アプリ-ギャルリンガル-') {
-                content = '<h2>公約翻訳アプリ-ギャルリンガル-</h2><p>開発環境: Monaca</p>';
+                content = '<h2>公約翻訳アプリ-ギャルリンガル-</h2><p>開発環境: Monaca</p><p>SPAJAM道場2024で開発</p>';
             }
 
             // ポップアップの内容を設定
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('overlay').style.display = 'none';
     });
 });
+
 
 function adjustPopupSize() {
     const popup = document.getElementById('popup');
