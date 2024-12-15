@@ -10,30 +10,20 @@
     <title>Sola</title>
     <style>
         /* blue-boxとwhite-boxのホバー時のアニメーション */
-        .blue-box, .white-box {
+        .blue-box {
             transition: all 0.3s ease-in-out; /* スムーズなアニメーション */
             position: relative; /* ホバー効果用にrelativeを指定 */
             cursor: pointer; /* カーソルをポインターに変更 */
         }
 
-        .blue-box:hover, .white-box:hover {
+        .blue-box:hover {
             transform: translateY(-5px); /* 上に少し移動 */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を強調 */
             background-color: #00d1ff; /* 背景色を少し明るく */
         }
 
-        .blue-box:hover h2, .white-box:hover h2 {
-            color: #fff; /* タイトルの文字色を白に変更 */
-            transition: color 0.3s ease-in-out; /* 文字色の変化をスムーズに */
-        }
-
-        .blue-box:hover li, .white-box:hover li {
-            color: #f0f8ff; /* リストの文字色を変更 */
-            transition: color 0.3s ease-in-out; /* 文字色の変化をスムーズに */
-        }
-
         /* ホバー時の背景エフェクトを追加 */
-        .blue-box::before, .white-box::before {
+        .blue-box::before {
             content: '';
             position: absolute;
             top: 0;
@@ -46,7 +36,7 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        .blue-box:hover::before, .white-box:hover::before {
+        .blue-box:hover::before {
             opacity: 1;
         }
     </style>
@@ -69,35 +59,37 @@
         </ul>
         </div>
 
-        <div class="white-box" onclick="location.href='p1.html';" style="cursor: pointer;">
-            <h2>Achievements</h2>
-            <ul class="details">
+        <div class="blue-box" onclick="location.href='p1.html';" style="background-color: #fff;">
+            <h2 style="color: black;">Achievements</h2>
+            <ul style="color: black;">
                 <li>10/6/2024 千葉県オープンデータコネクティッドアイデアソン<br>　　　　　千葉銀行賞 JMAS賞 シビックテック賞</li>
                 <li>11/3/2024 SPAJAM道場 最優秀賞</li>
             </ul>
         </div>
 
-        <div class="blue-box" onclick="location.href='p2.html';" style="cursor: pointer;">
-            <h2>Products</h2>
-            <ul class="details">
-                <li><strong style="text-align:center">On Developing:</strong></li>
+        <div class="blue-box" onclick="location.href='p2.html';" style="background-color: #fff;">
+            <h2 style="color: black;">Products</h2>
+            <ul style="color: black;">
+                <li><h3 style="text-align:center">On Developing:</h3></li>
                 <ul>
                     <li>タスク管理アプリ (Glide)</li>
                     <li>引っ越し支援アプリ (FlutterFlow)</li>
                     <li>予定共有アプリ-visuy- (FlutterFlow)</li>
                 </ul>
-                <li><strong style="text-align:center">Developed:</strong></li>
+                <li><h3 style="text-align:center">Developed:</h3></li>
                 <ul>
-                    <li>Galringal</li>
+                    <li>公約翻訳アプリ-ギャルリンガル-</li>
                 </ul>
             </ul>        
         </div>
     </div>
 
-    <div class="blue-box" onclick="location.href='p3.html';" style="cursor: pointer;">
-        <h2>Diary</h2>
-        <ul class="details">
-            <li>2024/11/23　サイト作成</li>
+    <div class="blue-box" onclick="location.href='p3.html';" style="background-color: #fff;">
+        <h2 style="color: black;">Diary</h2>
+        <ul style="color: black;">
+            <li><strong>2024/11/18</strong>HP製作　開始</li>
+            <li><strong>2024/11/29</strong>HP製作　仮完成</li>
+            <li><strong>2024/12/14</strong>HP修正</li>
         </ul>
     </div>
 
