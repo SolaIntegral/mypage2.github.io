@@ -246,3 +246,12 @@ h3 {
 #overlay {
     background: rgba(0, 0, 0, 0.5);
 }
+
+#toggleButton {
+    transition: background-color 0.3s ease;
+    margin: 10px 20px; /* 上下: 10px、左右: 50px */
+}
+
+#toggleButton:hover {
+    background-color: #007b9e;
+}
