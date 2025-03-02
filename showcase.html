@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" href="logo1.png" type="image/x-icon">
+    <link rel="shortcut icon" href="logo1.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOWCASE</title>
+</head>
+<body>
+
+    
+
+    <div class="showcase-container">
+        <!-- スマホ画像 -->
+        <div class="smartphone">
+            <img src="phone2.png" alt="Smartphone Frame" class="phone-frame">
+            <div class="screen">
+                <!-- ホーム画面 -->
+                <div class="home-screen">
+                    <div class="app-icon" data-app="app1"><img src="app1.png" alt="App 1"></div>
+                    <div class="app-icon" data-app="app2"><img src="app2.png" alt="App 2"></div>
+                    <div class="app-icon" data-app="app3"><img src="app3.png" alt="App 3"></div>
+                    <div class="app-icon" data-app="app4"><img src="app4.png" alt="App 4"></div>
+                </div>
+                <!-- アプリ画面 -->
+                <div class="app-screen hidden">
+                    <button class="back-btn">←</button>
+                    <div class="app-content">
+                        <h2 id="app-title"></h2>
+                        <p id="app-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function initializeTabNavigation() {
+        console.log("タブ切り替えスクリプトが読み込まれました");
+
+        const tabs = document.querySelectorAll(".tab");
+        const contents = document.querySelectorAll(".tab-content");
+
+        if (tabs.length === 0 || contents.length === 0) {
+            console.warn("タブ要素またはコンテンツが見つかりません。スクリプトをスキップします。");
+            return;
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                console.log(`タブがクリックされました: ${tab.dataset.tab}`);
+
+                // すべてのタブの `active` クラスを削除
+                tabs.forEach(t => t.classList.remove("active"));
+                // すべてのコンテンツの `active` クラスを削除 & `display: none;` を適用
+                contents.forEach(c => {
+                    c.classList.remove("active");
+                    c.style.display = "none"; // すべてのタブコンテンツを隠す
+                });
+
+                // クリックされたタブをアクティブ化
+                tab.classList.add("active");
+
+                // 対応するコンテンツを表示
+                const target = document.getElementById(tab.dataset.tab);
+                if (target) {
+                    target.classList.add("active");
+                    target.style.display = "block"; // `display: none;` を解除
+                    console.log(`表示するコンテンツ: ${tab.dataset.tab}`);
+                } else {
+                    console.error("対象のタブコンテンツが見つかりません");
+                }
+            });
+        });
+    }
+
+    </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

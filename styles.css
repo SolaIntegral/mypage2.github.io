@@ -27,173 +27,467 @@
     justify-content: center;
 }
 body {
-    margin: 0;
-    padding: 20px; /* 画面端から全体的に20pxの余白を設定 */
-    background-color: #f5f5f5; /* 背景色を設定（オプション） */
+    /* margin: 0; */
+    /* padding: 20px; 画面端から全体的に20pxの余白を設定 */
+    background: linear-gradient(to right, #007ACC, #0099CC);
+    color: #F8F9FA;
+    
     font-family: Arial, sans-serif; /* フォントを統一 */
 }
 
 
-/* リセット */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* index.html */
 
-/* ナビゲーションバー */
-nav {
-    max-width: 1200px; /* ナビゲーションバーの最大幅を設定 */
-    margin: 0 auto; /* 中央揃え */
-    background-color: #f8f9fa;
-    padding: 10px 20px; /* 上下: 10px、左右: 50px */
+/*↓メインビジュアル関係*/
+.main-visual {
+    position: relative;
+    width: 100vw;
+    height: 700px;
+    /* overflow: hidden; */
     display: flex;
     align-items: center;
-    justify-content: center; /* リンクを中央揃え */
-    border-bottom: 1px solid #ddd; /* 下部に境界線を追加 */
-    justify-content: space-between; /* 左右にスペースを設ける */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ナビゲーションの下に影を追加 */
-    border-radius: 8px; /* 全体を少し丸みを持たせる */
+    justify-content: center;
+    background: linear-gradient(to right, #007ACC, #0099CC);
 }
 
-/* リストのスタイル */
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    gap: 15px; /* リンク間のスペースを設定 */
-}
-nav ul{
-    display: flex; /* 横並び */
-}
-/* リストアイテム */
-nav ul li {
-    list-style: none;
-    width: 130px; /* 各アイテムの固定幅 */
-    overflow: hidden;
-    flex: 1;
-    margin: 0 10px; /* 左右に10pxの余白を追加 */
-    border-radius: 20px;
+/* 文字マスク用コンテナ */
+.text-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw; /* 文字間のスペース */
 }
 
-/* リンクのスタイル */
-nav ul li a {
-    display: flex; /* 中央揃えのため */
+/* 文字マスクエフェクト */
+.text-mask {
+    font-size: 30vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: white; /* 通常時は白色 */
+    background-size: cover;
+    background-position: center;
+}
+
+/* ホバー時の拡大 */
+.text-mask:hover {
+    transform: scale(1.5);
+}
+
+/* 他の文字を非表示 */
+.text-container:hover .text-mask:not(:hover) {
+    opacity: 0.3; 
+}
+
+/* ホバー時に異なる画像を適用 */
+.text-mask[data-text="S"]:hover {
+    background-image: url("image1.png");
+    -webkit-text-fill-color: transparent;
+}
+
+.text-mask[data-text="O"]:hover {
+    background-image: url("image1.png");
+    -webkit-text-fill-color: transparent;
+}
+
+.text-mask[data-text="R"]:hover {
+    background-image: url("image1.png");
+    -webkit-text-fill-color: transparent;
+}
+
+.text-mask[data-text="A"]:hover {
+    background-image: url("image1.png");
+    -webkit-text-fill-color: transparent;
+}
+
+/* 説明テキスト */
+.description {
+    position: absolute;
+    top: 90%; /* 文字の下に表示 */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* タイトル部分（大きく表示） */
+.desc-title {
+    font-size: 3vw; /* 大きめ */
+    font-weight: bold;
+    display: block;
+    color: white;
+    margin-bottom: 10px;
+}
+
+/* 詳細文章（小さめに表示） */
+.desc-text {
+    font-size: 1.5vw; /* 小さめ */
+    display: block;
+    color: white;
+}
+/*↑メインビジュアル関係*/
+
+
+
+/* showcase.html */
+
+/* スマホ全体のコンテナ */
+.showcase-container {
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 90vh;
+    position: relative;
+}
+
+/* スマホの枠画像 */
+.smartphone {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    background-color: transparent;  /* ← 背景を透明にする */
+    border-radius: 0;  /* ← 余分な角丸を削除 */
+    box-shadow: none;  /* ← 影を削除 */
+}
+
+.phone-frame {
     width: 100%;
     height: 100%;
-    padding: 10px 20px; /* 内側の余白を調整 */
-    text-decoration: none;
-    color: #00afcc;
-    font-weight: bold;
-    transition: color 0.3s;
-    position: relative;
-    z-index: 1;
-    border-radius: 20px;
 }
 
-/* 背景エフェクト */
-nav ul li a::after {
-    content: '';
+/* スマホの画面（アプリ部分のみ） */
+.screen {
     position: absolute;
-    right: 0%;
-    width: 300%;
+    top: 11%;
+    left: 8%;
+    width: 84%;
+    height: 78%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ホーム画面のアプリ配置 */
+.home-screen {
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 90%;
+}
+
+/* アプリアイコン */
+.app-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.app-icon:hover {
+    transform: scale(1.1);
+}
+
+.app-icon img {
+    width: 100%;
+    height: auto;
+}
+
+/* アプリ画面 */
+.app-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to left, #fff 34%, #ff6f61 34%, #ffcc33 66%, #00afcc 66%);
-    z-index: -1;
-}
-
-/* ホバー効果 */
-nav ul li a:hover {
-    color: #fff;
-}
-
-nav ul li a:hover::after {
-    right: -200%;
-}
-
-/* 動画 */
-video {
-    max-width: 100%;
-    max-height: 100vh;
-    display: block;
-    margin: 0 auto;
-    object-fit: cover;
-    background-color: #fff;
-}
-
-.blue-box {
-    background-color: #00afcc; /* 背景色を青に設定 */
-    color: white; /* テキスト色を白に設定 */
-    padding: 30px 80px 30px 80px; /* 内側の余白を設定 */
-    border-radius: 8px; /* 角を丸く */
-    max-width: 1200px; /* 最大幅を設定 */
-    margin: 20px auto; /* 上下に余白、中央揃え */
-    font-size: 16px; /* フォントサイズを調整 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* コンテンツ全体に影を追加 */
-}
-
-.blue-box ul {
-    list-style: none; /* リストマーカーを非表示 */
-    padding: 0; /* 余白をリセット */
-    margin: 0; /* 余白をリセット */
-}
-.blue-box li:last-child {
-    margin-bottom: 0; /* 最後の項目の余白を削除 */
-}
-.blue-box li {
-    display: block; /* 各リストアイテムをブロック要素として扱う */
-    margin-bottom: 10px; /* 各項目の間に余白を追加 */
-    font-size: 25px; /* フォントサイズを調整 */
-}
-.blue-box li strong {
-    display: inline-block; /* ラベルを独立したブロック要素に */
-    margin-right: 10px; /* ラベルと値の間に余白を追加 */
-    font-weight: bold; /* 太字 */
-}
-.blue-box span {
-    text-align: left; /* 内容部分を左揃え */
-    flex-grow: 1; /* 必要に応じて幅を拡張 */
-    margin-left: 10px; /* ラベルと内容の間に余白を追加 */
-    word-wrap: break-word; /* 長い内容を折り返す */
-}
-
-
-h1 {
-    font-size: 40px; /* 見出しのフォントサイズを大きく */
-    margin: 50px auto; /* 見出しと内容の間の余白を増やす */
-    font-weight: bold; /* 太字に */
-    max-width: 1200px; /* 最大幅を設定 */
-    text-align:center
-}
-h2 {
-    font-size: 30px; /* 見出しのフォントサイズを大きく */
-    margin-bottom: 20px; /* 見出しと内容の間の余白を増やす */
-    font-weight: bold; /* 太字に */
-    text-align: left; /* テキストを左寄せ */
-}
-h3 {
-    font-size: 30px; /* 見出しのフォントサイズを大きく */
-    margin: 20px auto; /* 見出しと内容の間の余白を増やす */
-    font-weight: bold; /* 太字に */
-    max-width: 1200px; /* 最大幅を設定 */
-    text-align:left;
-}
-
-
-
-/* ポップアップ */
-#popup {
-    width: 700px;
-    max-width: 90%;
+    background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    overflow-y: auto;
+    text-align: center;
+    display: none;
 }
+
+.app-screen.hidden {
+    display: none;
+    color: #007ACC;
+    width: 80%;
+    height: 90%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+/* 戻るボタン */
+.back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* showcase.html */
+
+
+
+/* overview.html */
+.timeline-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* タブコンテナ */
+.tab-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-bottom: 10px; /* 矢印との間隔 */
+}
+
+/* タブ（Past, Now, Future） */
+.tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    /* background-color: white; */
+    color: #fff;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 20px; /* 拡大 */
+}
+
+.tab.active {
+    /* background-color: #007ACC; */
+    color: white;
+    font-size: 28px; /* 拡大 */
+}
+
+/* デフォルトで全てのタブコンテンツを非表示 */
+.tab-content {
+    display: none;
+}
+
+/* `active` クラスが付いたタブコンテンツのみ表示 */
+.tab-content.active {
+    display: block;
+}
+
+
+/* 手書き風の矢印 */
+.timeline-arrow {
+    width: 65%;
+    height: 5px;
+    background-color: #fff;
+    position: relative;
+}
+
+.timeline-arrow::after {
+    content: "";
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 20px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+
+/* 取り組みカード */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    width: 200px;
+    height: 150px;
+    padding: 15px;
+    color:#007ACC;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s;
+
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+/* overview.html */
+
+
+/* about.html */
+/* 自己紹介ページ */
+/* 自己紹介ページ */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 50px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* プロフィール画像 */
+.profile-image img {
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* プロフィール詳細 */
+.profile-details {
+    max-width: 600px;
+}
+
+.name {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 20px;
+    margin-top: 20px;
+    border-bottom: 2px solid #007ACC;
+    display: inline-block;
+}
+
+.hobby, .history, .motto {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* スキルリスト */
+.skills, .achievements, .goals {
+    list-style: none;
+    padding: 0;
+}
+
+.skills li, .achievements li, .goals li {
+    background: #007ACC;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+}
+
+/* ロゴセクション */
+.logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.logo-image img {
+    width: 150px;
+    height: auto;
+}
+
+.logo-description {
+    max-width: 500px;
+}
+/* about.html */
+
+
+/* reports.html */
+/* 活動報告・イベント情報ページ */
+.report-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px;
+}
+
+/* 見出し */
+.report-container h1, .report-container h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* 活動報告カード */
+.report-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.report-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.report-card h3 {
+    color: #007ACC;
+    margin-bottom: 10px;
+}
+
+.report-card .date {
+    font-size: 12px;
+    color: gray;
+}
+
+/* イベントタイムライン */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.event-date {
+    font-size: 14px;
+    background: #007ACC;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.event-title {
+    font-weight: bold;
+}
+
+/* reports.html */
 
 @media (max-width: 768px) {
     nav ul {
@@ -205,53 +499,21 @@ h3 {
         width: auto;
         margin: 5px 0;
     }
-
-    #popup {
-        width: 90%;
+    .about-container {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .blue-box, .white-box, .container {
-        max-width: 100%;
-        padding: 20px;
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 30px;
+    .profile-image img {
+        width: 180px;
     }
-
-    h2 {
-        font-size: 24px;
+    .report-cards {
+        flex-direction: column;
+        align-items: center;
     }
-
-    h3 {
-        font-size: 20px;
-    }
-
-    .blue-box li, .white-box li {
-        font-size: 18px;
-    }
-}
-
-
-#popup-content {
-    max-height: 300px; /* 最大高さを設定 */
-    overflow-y: auto; /* 内容が多い場合スクロール */
-}
-
-
-#popup-close {
-    color: #333;
-}
-
-#overlay {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#toggleButton {
-    transition: background-color 0.3s ease;
-    margin: 10px 20px; /* 上下: 10px、左右: 50px */
-}
-
-#toggleButton:hover {
-    background-color: #007b9e;
 }

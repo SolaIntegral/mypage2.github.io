@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     // ナビゲーションの動的読み込み
     $('body').prepend('<div id="nav"></div>');
@@ -18,60 +17,61 @@ $(document).ready(function () {
     });
 });
 
+//showcase.html
+// overview.html
+window.onload = function () {
+    console.log("スクリプトが正常に読み込まれました");
 
-document.addEventListener('DOMContentLoaded', function () {
-    // blue-box全体をクリック可能にする
-    document.querySelectorAll('.blue-box').forEach(function (box) {
-        box.addEventListener('click', function () {
-            const appTitle = this.querySelector('h2').textContent.trim(); // h2のタイトルを取得
-            let content = '';
+    initializeTabNavigation();  // タブナビゲーションを初期化
 
-            // アプリごとの詳細内容を設定
-            if (appTitle === 'タスク管理アプリ') {
-                content = '<h2>タスク管理アプリ</h2><p>開発環境: Glide</p><p>プライベートで開発中</p>';
-            } else if (appTitle === '引っ越し支援アプリ') {
-                content = '<h2>引っ越し支援アプリ</h2><p>開発環境: Flutter Flow</p><p>UDCにむけて開発中</p>';
-            } else if (appTitle === '予定共有アプリ-visuy-') {
-                content = '<h2>予定共有アプリ-visuy-</h2><p>開発環境: Flutter Flow</p><p>SPAJAM2024予選でプロトタイプ開発</p>';
-            } else if (appTitle === '公約翻訳アプリ-ギャルリンガル-') {
-                content = '<h2>公約翻訳アプリ-ギャルリンガル-</h2><p>開発環境: Monaca</p><p>SPAJAM道場2024で開発</p>';
+    const appIcons = document.querySelectorAll(".app-icon");
+    const homeScreen = document.querySelector(".home-screen");
+    const appScreen = document.querySelector(".app-screen");
+    const appTitle = document.getElementById("app-title");
+    const appDescription = document.getElementById("app-description");
+    const backButton = document.querySelector(".back-btn");
+
+     // **✅ 初期状態を明確にする**
+     homeScreen.style.display = "flex";  // ホーム画面を表示
+     appScreen.style.display = "none";   // アプリ画面を隠す
+
+    if (!homeScreen || !appScreen || !appTitle || !appDescription || !backButton) {
+        console.warn("必要な要素が見つかりません。タブナビゲーションは正常に動作します。");
+        return;
+    }
+
+    // アプリの詳細情報（タイトル & 説明）
+    const appData = {
+        "app1": { title: "Visuy", description: "予定を可視化して共有するアプリ。SPAJAM2024予選で開発。" },
+        "app2": { title: "ギャルリンガル", description: "ギャルが選挙公約を分かりやすく解説。SPAJAM道場2024最優秀賞。" },
+        "app3": { title: "公民館予約アプリ", description: "南房総市の公民館の予約・抽選管理アプリ。" },
+        "app4": { title: "UDC2024 散歩アプリ", description: "地域活性化を目的とした健康促進アプリ" },
+    };
+
+    // アプリアイコンをクリックしたとき
+    appIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            const appKey = icon.getAttribute("data-app");
+            if (appData[appKey]) {
+                console.log(`アプリ「${appData[appKey].title}」がクリックされました`);
+                appTitle.innerText = appData[appKey].title;
+                appDescription.innerText = appData[appKey].description;
+
+                // 画面切り替え
+                homeScreen.style.display = "none";
+                appScreen.style.display = "block";
+            } else {
+                console.error(`データが見つかりません: ${appKey}`);
             }
-
-            // ポップアップの内容を設定
-            document.getElementById('popup-content').innerHTML = content;
-
-            // ポップアップを表示
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
         });
     });
 
-    // ポップアップを閉じる
-    document.getElementById('popup-close').addEventListener('click', function () {
-        document.getElementById('popup').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
+    // 戻るボタン
+    backButton.addEventListener("click", () => {
+        console.log("ホーム画面に戻ります");
+
+        // 画面切り替え
+        homeScreen.style.display = "grid";
+        appScreen.style.display = "none";
     });
-
-    // 背景クリックでポップアップを閉じる
-    document.getElementById('overlay').addEventListener('click', function () {
-        document.getElementById('popup').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-    });
-});
-
-
-function adjustPopupSize() {
-    const popup = document.getElementById('popup');
-    const windowHeight = window.innerHeight;
-
-    if (popup.offsetHeight > windowHeight * 0.8) {
-        popup.style.height = (windowHeight * 0.8) + 'px';
-        popup.style.overflowY = 'auto';
-    } else {
-        popup.style.height = 'auto';
-    }
-}
-
-// イベントリスナーを追加
-window.addEventListener('resize', adjustPopupSize);
-document.addEventListener('DOMContentLoaded', adjustPopupSize);
+};

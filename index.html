@@ -8,46 +8,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sola</title>
-    <style>
-        /* blue-boxとwhite-boxのホバー時のアニメーション */
-        .blue-box {
-            transition: all 0.3s ease-in-out; /* スムーズなアニメーション */
-            position: relative; /* ホバー効果用にrelativeを指定 */
-            cursor: pointer; /* カーソルをポインターに変更 */
-        }
-
-        .blue-box:hover {
-            transform: translateY(-5px); /* 上に少し移動 */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を強調 */
-            background-color: #00d1ff; /* 背景色を少し明るく */
-        }
-
-        /* ホバー時の背景エフェクトを追加 */
-        .blue-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .blue-box:hover::before {
-            opacity: 1;
-        }
-    </style>
 </head>
 <body>
     <div class="logo_fadein">
         <p><img src="logo1.png" alt="Logo"></p>
     </div>
 
-    <video src="video1.mp4" autoplay muted playsinline loop></video>
-
+    <div class="main-visual">
+        <div class="text-container">
+            <span class="text-mask" data-text="S">S</span>
+            <span class="text-mask" data-text="O">O</span>
+            <span class="text-mask" data-text="R">R</span>
+            <span class="text-mask" data-text="A">A</span>
+        </div>
+        <div class="description" id="description">
+            <span class="desc-title"></span>
+            <span class="desc-text"></span>
+        </div>
+    </div>
+<!-- 
     <div id="content">
         <div class="blue-box" onclick="location.href='p1.html';" style="cursor: pointer;" >
         <h2>About</h2>
@@ -91,34 +70,93 @@
             <li><strong>2024/11/29</strong>HP製作　仮完成</li>
             <li><strong>2024/12/14</strong>HP修正</li>
         </ul>
-    </div>
+    </div> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js"></script>
     <script>
-        $(document).ready(function () {
-            const fadeInTime = 1000;  // フェードイン時間
-            const fadeOutTime = 1000; // フェードアウト時間
-            const displayDuration = 2500; // 表示時間
+    $(document).ready(function () {
+    const fadeInTime = 1000;  // フェードイン時間
+    const fadeOutTime = 1000; // フェードアウト時間
+    const displayDuration = 2500; // 表示時間
 
-            // ページを直接開いた場合のみロゴアニメーションを再生
-            if (document.referrer === "" || !document.referrer.includes(window.location.origin)) {
-                // ロゴをフェードイン
-                setTimeout(function () {
-                    $('.logo_fadein p').fadeIn(fadeInTime);
-                }, 500);
+    // ページを直接開いた場合のみロゴアニメーションを再生
+    if (document.referrer === "" || !document.referrer.includes(window.location.origin)) {
+        // ロゴをフェードイン
+        setTimeout(function () {
+            $('.logo_fadein p').fadeIn(fadeInTime);
+        }, 500);
 
-                // 背景をフェードアウト
-                setTimeout(function () {
-                    $('.logo_fadein').fadeOut(fadeOutTime);
-                }, displayDuration);
-            } else {
-                // 他のページから遷移してきた場合はロゴを即座に非表示
-                $('.logo_fadein').remove();
+        // 背景をフェードアウト
+        setTimeout(function () {
+            $('.logo_fadein').fadeOut(fadeOutTime);
+        }, displayDuration);
+    } else {
+        // 他のページから遷移してきた場合はロゴを即座に非表示
+        $('.logo_fadein').remove();
+    }
+});
+
+
+//↓メインビジュアル
+document.addEventListener("DOMContentLoaded", () => {
+    const textElements = document.querySelectorAll(".text-mask");
+    const descriptionBox = document.getElementById("description");
+    const titleElement = descriptionBox.querySelector(".desc-title");
+    const textElement = descriptionBox.querySelector(".desc-text");
+
+    // 各文字に対応する説明文
+    const descriptions = {
+        "S": {
+            title: "Showcase",
+            text: "アイデアをカタチに。\nこれまでに手がけたアプリの軌跡をご覧ください。",
+            link: "showcase.html" // 遷移先ページ
+        },
+        "O": {
+            title: "Overview",
+            text: "挑戦し続けることが、自分を創る。\nこれまで取り組んできた多様な経験やプロジェクトをまとめました。",
+            link: "overview.html"
+        },
+        "R": {
+            title: "Reports",
+            text: "次の一歩を共有します。\n最新の活動やイベント参加予定をいち早くチェック！",
+            link: "reports.html"
+        },
+        "A": {
+            title: "About",
+            text: "ただの自己紹介じゃ物足りない。\n価値観や挑戦への想いを、少しだけ深掘りしてみませんか？",
+            link: "about.html"
+        }
+    };
+
+    textElements.forEach(text => {
+        text.addEventListener("mouseover", () => {
+            const char = text.getAttribute("data-text");
+            if (descriptions[char]) {
+                titleElement.innerText = descriptions[char].title;
+                textElement.innerText = descriptions[char].text;
+                descriptionBox.style.opacity = "1";
             }
         });
 
+        text.addEventListener("mouseout", () => {
+            descriptionBox.style.opacity = "0";
+        });
+
+        // クリック時のページ遷移
+        text.addEventListener("click", () => {
+            const char = text.getAttribute("data-text");
+            if (descriptions[char] && descriptions[char].link) {
+                window.location.href = descriptions[char].link; // ページ遷移
+            }
+        });
+    });
+});
+
+
+// ↑メインビジュアル
     </script>
     
+
 </body>
 </html>
