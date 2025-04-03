@@ -7,78 +7,503 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHOWCASE</title>
+    <style>
+        /* スマートフォン画面のアニメーション */
+        @keyframes appOpen {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes appClose {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0; }
+        }
+        
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* アプリアイコンのホバーエフェクト */
+        .app-icon:hover {
+            animation: iconBounce 0.5s ease infinite;
+        }
+        
+        /* アプリ画面のアニメーション */
+        .app-screen.active {
+            animation: appOpen 0.3s ease forwards;
+        }
+        
+        .app-screen.closing {
+            animation: appClose 0.3s ease forwards;
+        }
+        
+        /* アプリ詳細画面のスタイル */
+        .app-detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .app-icon-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-right: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .app-info {
+            flex: 1;
+        }
+        
+        .app-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .app-category {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .app-description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .app-features {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+        
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007ACC;
+            color: white;
+            border-radius: 50%;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .app-screenshots {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px 0;
+            width: 100%;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .app-screenshots::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        
+        .screenshot {
+            min-width: 200px;
+            height: 350px;
+            border-radius: 10px;
+            background-color: #ddd;
+            flex-shrink: 0;
+        }
+        
+        /* ホーム画面のスタイル */
+        .home-screen {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        /* ステータスバー */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 15px;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 10px 10px 0 0;
+            font-size: 12px;
+            color: #333;
+        }
+        
+        .time {
+            font-weight: bold;
+        }
+        
+        .status-icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        /* ドック */
+        .dock {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            margin-top: auto;
+            margin-bottom: 10px;
+            width: 90%;
+        }
+        
+        .dock-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .dock-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .showcase-container {
+                padding: 10px;
+            }
+            
+            .smartphone {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                aspect-ratio: 9/19;
+            }
+            
+            .home-screen {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-
-    
-
     <div class="showcase-container">
-        <!-- スマホ画像 -->
+        <!-- スマートフォン -->
         <div class="smartphone">
             <img src="phone2.png" alt="Smartphone Frame" class="phone-frame">
             <div class="screen">
+                <!-- ステータスバー -->
+                <div class="status-bar">
+                    <div class="time">14:30</div>
+                    <div class="status-icons">
+                        <span>📶</span>
+                        <span>🔋</span>
+                    </div>
+                </div>
+                
                 <!-- ホーム画面 -->
                 <div class="home-screen">
-                    <div class="app-icon" data-app="app1"><img src="app1.png" alt="App 1"></div>
-                    <div class="app-icon" data-app="app2"><img src="app2.png" alt="App 2"></div>
-                    <div class="app-icon" data-app="app3"><img src="app3.png" alt="App 3"></div>
-                    <div class="app-icon" data-app="app4"><img src="app4.png" alt="App 4"></div>
-                </div>
-                <!-- アプリ画面 -->
-                <div class="app-screen hidden">
-                    <button class="back-btn">←</button>
-                    <div class="app-content">
-                        <h2 id="app-title"></h2>
-                        <p id="app-description"></p>
+                    <div class="app-icon" data-app="app1">
+                        <img src="app1.png" alt="Visuy" class="app-icon-img">
                     </div>
+                    <div class="app-icon" data-app="app2">
+                        <img src="app2.png" alt="ギャルリンガル" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app3">
+                        <img src="app3.png" alt="公民館予約" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app4">
+                        <img src="app4.png" alt="UDC散歩" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app5">
+                        <img src="app5.png" alt="タスク管理" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app6">
+                        <img src="app6.png" alt="引越し支援" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app7">
+                        <img src="app7.png" alt="予定共有" class="app-icon-img">
+                    </div>
+                    <div class="app-icon" data-app="app8">
+                        <img src="app8.png" alt="設定" class="app-icon-img">
+                    </div>
+                </div>
+                
+                <!-- ドック -->
+                <div class="dock">
+                    <div class="dock-icon" data-app="app1">
+                        <img src="app1.png" alt="Visuy" class="app-icon-img">
+                    </div>
+                    <div class="dock-icon" data-app="app2">
+                        <img src="app2.png" alt="ギャルリンガル" class="app-icon-img">
+                    </div>
+                    <div class="dock-icon" data-app="app3">
+                        <img src="app3.png" alt="公民館予約" class="app-icon-img">
+                    </div>
+                    <div class="dock-icon" data-app="app4">
+                        <img src="app4.png" alt="UDC散歩" class="app-icon-img">
+                    </div>
+                </div>
+                
+                <!-- アプリ詳細画面 -->
+                <div class="app-screen">
+                    <div class="app-detail">
+                        <div class="app-header">
+                            <img id="app-icon-large" src="" alt="" class="app-icon-large">
+                            <div class="app-info">
+                                <h2 id="app-title" class="app-title"></h2>
+                                <p id="app-category" class="app-category"></p>
+                            </div>
+                        </div>
+                        
+                        <p id="app-description" class="app-description"></p>
+                        
+                        <div class="app-features">
+                            <h3>主な機能</h3>
+                            <div id="feature-list"></div>
+                        </div>
+                        
+                        <div class="app-screenshots">
+                            <div id="screenshot1" class="screenshot"></div>
+                            <div id="screenshot2" class="screenshot"></div>
+                            <div id="screenshot3" class="screenshot"></div>
+                        </div>
+                    </div>
+                    <button class="back-btn">←</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-    function initializeTabNavigation() {
-        console.log("タブ切り替えスクリプトが読み込まれました");
-
-        const tabs = document.querySelectorAll(".tab");
-        const contents = document.querySelectorAll(".tab-content");
-
-        if (tabs.length === 0 || contents.length === 0) {
-            console.warn("タブ要素またはコンテンツが見つかりません。スクリプトをスキップします。");
-            return;
+    // アプリデータ
+    const appData = {
+        "app1": {
+            title: "Visuy",
+            category: "予定管理",
+            description: "予定を可視化して共有するアプリ。SPAJAM2024予選で開発。チームメンバーと予定を共有し、効率的なスケジュール管理を実現します。",
+            icon: "app1.png",
+            features: [
+                "カレンダー連携",
+                "チーム共有機能",
+                "リマインダー設定",
+                "統計データ表示"
+            ],
+            screenshots: ["screenshot1_1.jpg", "screenshot1_2.jpg", "screenshot1_3.jpg"]
+        },
+        "app2": {
+            title: "ギャルリンガル",
+            category: "教育・政治",
+            description: "ギャルが選挙公約を分かりやすく解説。SPAJAM道場2024最優秀賞。難しい政治の話を若者にもわかりやすく伝えます。",
+            icon: "app2.png",
+            features: [
+                "公約の簡単解説",
+                "音声読み上げ機能",
+                "キーワード検索",
+                "お気に入り登録"
+            ],
+            screenshots: ["screenshot2_1.jpg", "screenshot2_2.jpg", "screenshot2_3.jpg"]
+        },
+        "app3": {
+            title: "公民館予約",
+            category: "公共サービス",
+            description: "南房総市の公民館の予約・抽選管理アプリ。地域の公共施設を簡単に予約できます。",
+            icon: "app3.png",
+            features: [
+                "施設検索",
+                "オンライン予約",
+                "抽選機能",
+                "予約履歴管理"
+            ],
+            screenshots: ["screenshot3_1.jpg", "screenshot3_2.jpg", "screenshot3_3.jpg"]
+        },
+        "app4": {
+            title: "UDC散歩",
+            category: "健康・地域活性化",
+            description: "地域活性化を目的とした健康促進アプリ。散歩しながら地域の魅力を発見できます。",
+            icon: "app4.png",
+            features: [
+                "散歩ルート提案",
+                "地域スポット発見",
+                "健康データ記録",
+                "地域イベント情報"
+            ],
+            screenshots: ["screenshot4_1.jpg", "screenshot4_2.jpg", "screenshot4_3.jpg"]
+        },
+        "app5": {
+            title: "タスク管理",
+            category: "生産性",
+            description: "シンプルで使いやすいタスク管理アプリ。日々のタスクを効率的に管理できます。",
+            icon: "app5.png",
+            features: [
+                "タスクの追加・編集",
+                "優先順位付け",
+                "進捗管理",
+                "リマインダー"
+            ],
+            screenshots: ["screenshot5_1.jpg", "screenshot5_2.jpg", "screenshot5_3.jpg"]
+        },
+        "app6": {
+            title: "引越し支援",
+            category: "ライフスタイル",
+            description: "引越しの準備から実行までをサポートするアプリ。引越しのストレスを軽減します。",
+            icon: "app6.png",
+            features: [
+                "チェックリスト",
+                "業者比較",
+                "費用計算",
+                "引越しスケジュール"
+            ],
+            screenshots: ["screenshot6_1.jpg", "screenshot6_2.jpg", "screenshot6_3.jpg"]
+        },
+        "app7": {
+            title: "予定共有",
+            category: "コミュニケーション",
+            description: "グループで予定を共有・調整できるアプリ。面倒な予定調整を簡単にします。",
+            icon: "app7.png",
+            features: [
+                "グループ作成",
+                "投票機能",
+                "カレンダー連携",
+                "通知設定"
+            ],
+            screenshots: ["screenshot7_1.jpg", "screenshot7_2.jpg", "screenshot7_3.jpg"]
+        },
+        "app8": {
+            title: "設定",
+            category: "システム",
+            description: "スマートフォンの設定を管理するアプリ。",
+            icon: "app8.png",
+            features: [
+                "Wi-Fi設定",
+                "通知設定",
+                "アプリ管理",
+                "バックアップ"
+            ],
+            screenshots: ["screenshot8_1.jpg", "screenshot8_2.jpg", "screenshot8_3.jpg"]
         }
+    };
 
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                console.log(`タブがクリックされました: ${tab.dataset.tab}`);
-
-                // すべてのタブの `active` クラスを削除
-                tabs.forEach(t => t.classList.remove("active"));
-                // すべてのコンテンツの `active` クラスを削除 & `display: none;` を適用
-                contents.forEach(c => {
-                    c.classList.remove("active");
-                    c.style.display = "none"; // すべてのタブコンテンツを隠す
-                });
-
-                // クリックされたタブをアクティブ化
-                tab.classList.add("active");
-
-                // 対応するコンテンツを表示
-                const target = document.getElementById(tab.dataset.tab);
-                if (target) {
-                    target.classList.add("active");
-                    target.style.display = "block"; // `display: none;` を解除
-                    console.log(`表示するコンテンツ: ${tab.dataset.tab}`);
-                } else {
-                    console.error("対象のタブコンテンツが見つかりません");
+    // アプリ画面の初期化
+    document.addEventListener('DOMContentLoaded', function() {
+        const appIcons = document.querySelectorAll('.app-icon, .dock-icon');
+        const appScreen = document.querySelector('.app-screen');
+        const backBtn = document.querySelector('.back-btn');
+        const homeScreen = document.querySelector('.home-screen');
+        const dock = document.querySelector('.dock');
+        
+        // アプリアイコンをクリックしたとき
+        appIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const appKey = this.getAttribute('data-app');
+                if (appData[appKey]) {
+                    // ホーム画面とドックを非表示
+                    homeScreen.style.display = 'none';
+                    dock.style.display = 'none';
+                    
+                    // アプリ詳細を表示
+                    document.getElementById('app-icon-large').src = appData[appKey].icon;
+                    document.getElementById('app-title').textContent = appData[appKey].title;
+                    document.getElementById('app-category').textContent = appData[appKey].category;
+                    document.getElementById('app-description').textContent = appData[appKey].description;
+                    
+                    // 機能リストを生成
+                    const featureList = document.getElementById('feature-list');
+                    featureList.innerHTML = '';
+                    appData[appKey].features.forEach(feature => {
+                        const featureItem = document.createElement('div');
+                        featureItem.className = 'feature-item';
+                        featureItem.innerHTML = `
+                            <div class="feature-icon">✓</div>
+                            <div class="feature-text">${feature}</div>
+                        `;
+                        featureList.appendChild(featureItem);
+                    });
+                    
+                    // スクリーンショットを設定（実際の画像がない場合は背景色を設定）
+                    document.getElementById('screenshot1').style.backgroundColor = getRandomColor();
+                    document.getElementById('screenshot2').style.backgroundColor = getRandomColor();
+                    document.getElementById('screenshot3').style.backgroundColor = getRandomColor();
+                    
+                    // アプリ画面を表示
+                    appScreen.style.display = 'block';
+                    setTimeout(() => {
+                        appScreen.classList.add('active');
+                    }, 10);
                 }
             });
         });
-    }
-
+        
+        // 戻るボタンをクリックしたとき
+        backBtn.addEventListener('click', function() {
+            appScreen.classList.remove('active');
+            appScreen.classList.add('closing');
+            
+            setTimeout(() => {
+                appScreen.style.display = 'none';
+                appScreen.classList.remove('closing');
+                
+                // ホーム画面とドックを表示
+                homeScreen.style.display = 'grid';
+                dock.style.display = 'flex';
+            }, 300);
+        });
+        
+        // ランダムな色を生成する関数
+        function getRandomColor() {
+            const colors = [
+                '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+                '#FFEEAD', '#D4A5A5', '#9B59B6', '#3498DB'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // アプリアイコンにホバーエフェクトを追加
+        appIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.animation = 'iconBounce 0.5s ease infinite';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.animation = '';
+            });
+        });
+    });
     </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

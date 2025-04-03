@@ -1,7 +1,10 @@
 $(document).ready(function () {
     // ナビゲーションの動的読み込み
     $('body').prepend('<div id="nav"></div>');
-    $('#nav').load('nav.html');
+    $('#nav').load('nav.html', function() {
+        // ナビゲーションが読み込まれた後に現在のページを検出
+        highlightCurrentPage();
+    });
 
     // ページ遷移を制御
     $('nav').on('click', 'a', function (e) {
@@ -12,10 +15,30 @@ $(document).ready(function () {
         $('#content').fadeOut(300, function () {
             $('#content').load(target + ' #content', function () {
                 $('#content').fadeIn(300); // フェードイン
+                // ページ遷移後に現在のページをハイライト
+                highlightCurrentPage();
             });
         });
     });
 });
+
+// 現在のページを検出してナビゲーションリンクをハイライトする関数
+function highlightCurrentPage() {
+    // 現在のページのパスを取得
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+    
+    // すべてのナビゲーションリンクからアクティブクラスを削除
+    $('nav a').removeClass('active');
+    
+    // 現在のページに対応するリンクにアクティブクラスを追加
+    if (currentPage === '') {
+        // インデックスページの場合
+        $('nav a[href="index.html"]').addClass('active');
+    } else {
+        $('nav a[href="' + currentPage + '"]').addClass('active');
+    }
+}
 
 //showcase.html
 // overview.html
