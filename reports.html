@@ -7,34 +7,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REPORTS</title>
+    <style>
+        /* トロフィーアイコンのスタイル */
+        .trophy-icon {
+            font-size: 2em;
+            color: #FFD700;
+            margin-right: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* 受賞歴カードのスタイル */
+        .award-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .award-info {
+            flex: 1;
+        }
+
+        .award-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .award-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .award-description {
+            color: #444;
+            margin-top: 5px;
+            font-size: 0.95em;
+        }
+
+        /* セクション間のスペース */
+        .section-spacer {
+            margin: 40px 0;
+        }
+    </style>
 </head>
 <body>
     <div class="report-container">
         <h1>活動報告 & イベント情報</h1>
 
-        <!-- 最新の活動報告 -->
-        <section class="latest-reports">
-            <h2>最新の活動報告</h2>
-            <div class="report-cards">
-                <div class="report-card">
-                    <h3>SPAJAM 2024 予選</h3>
-                    <p class="date">2024年10月19日-20日</p>
-                    <p>Flutterを使ったアプリ開発。チームで予定可視化アプリを作成。</p>
+        <!-- 受賞歴セクション -->
+        <section class="awards">
+            <h2>受賞歴</h2>
+            <div class="award-cards">
+                <div class="award-card">
+                    <span class="trophy-icon">🏆</span>
+                    <div class="award-info">
+                        <div class="award-title">SPAJAM道場2024 最優秀賞</div>
+                        <div class="award-date">2024年11月3日</div>
+                        <div class="award-description">ChatGPT APIを用いたギャル公約解説アプリの開発で受賞</div>
+                    </div>
                 </div>
 
-                <div class="report-card">
-                    <h3>SPAJAM道場2024 🏆</h3>
-                    <p class="date">2024年11月2日-3日</p>
-                    <p>ChatGPT APIを用いたギャル公約解説アプリ開発（最優秀賞受賞）。</p>
+                <div class="award-card">
+                    <span class="trophy-icon">🥈</span>
+                    <div class="award-info">
+                        <div class="award-title">Sensing Solution ハッカソン2024 準優勝</div>
+                        <div class="award-date">2024年11月7日</div>
+                        <div class="award-description">Spresenseを活用したIoTアプリ開発で受賞</div>
+                    </div>
                 </div>
 
-                <div class="report-card">
-                    <h3>Sensing Solution ハッカソン2024</h3>
-                    <p class="date">2024年11月7日-現在</p>
-                    <p>Spresenseを活用したIoTアプリ開発。コンビニ自動精算システムを提案。</p>
+                <div class="award-card">
+                    <span class="trophy-icon">🏅</span>
+                    <div class="award-info">
+                        <div class="award-title">UDC 2024 特別賞</div>
+                        <div class="award-date">2024年10月</div>
+                        <div class="award-description">ユーザー体験デザインコンテストで受賞</div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <div class="section-spacer"></div>
 
         <!-- 今後のイベント -->
         <section class="upcoming-events">
