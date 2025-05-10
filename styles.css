@@ -515,7 +515,7 @@ body {
 /* カードコンテナ */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     padding: 20px;
     background: var(--whiteboard-bg);
@@ -528,38 +528,59 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    transform: rotate(-2deg);
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
-    min-height: 150px;
+    min-height: 120px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    text-align: left;
     font-weight: bold;
     color: var(--text-dark);
 }
 
 .card:nth-child(2n) {
     background: var(--sticky-note-pink);
-    transform: rotate(2deg);
 }
 
 .card:nth-child(3n) {
     background: var(--sticky-note-blue);
-    transform: rotate(-1deg);
 }
 
 .card:nth-child(4n) {
     background: var(--sticky-note-green);
-    transform: rotate(1deg);
 }
 
 .card:hover {
-    transform: rotate(0) scale(1.05);
+    transform: scale(1.05);
     box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
     z-index: 1;
+}
+
+/* 付箋の日付 */
+.card-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: normal;
+}
+
+/* 付箋のタイトル */
+.card-title {
+    font-size: 1.2em;
+    margin: 25px 0 10px 0;
+    line-height: 1.4;
+}
+
+/* 付箋の説明 */
+.card-description {
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: auto;
 }
 
 /* コンテンツエリア */
@@ -764,5 +785,231 @@ body {
     .report-cards {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modal-title {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin: 0;
+    padding-right: 30px;
+}
+
+.modal-date {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.modal-body {
+    color: #333;
+}
+
+.modal-description {
+    font-size: 1em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-details h3 {
+    color: var(--primary-color);
+    margin: 15px 0 8px 0;
+    font-size: 1.1em;
+}
+
+.modal-details ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-details li {
+    margin: 6px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.modal-details li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+/* スクロールバーのカスタマイズ */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color-light);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    /* タブコンテナ */
+    .tab-container {
+        gap: 10px;
+        padding: 5px;
+    }
+
+    /* タブ */
+    .tab {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+
+    /* カードコンテナ */
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    /* カード */
+    .card {
+        min-height: 100px;
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.1em;
+        margin: 20px 0 8px 0;
+    }
+
+    .card-description {
+        font-size: 0.85em;
+    }
+
+    .card-date {
+        font-size: 0.75em;
+    }
+
+    /* モーダル */
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 15px;
+        max-height: 90vh;
+    }
+
+    .modal-title {
+        font-size: 1.4em;
+        padding-right: 30px;
+    }
+
+    .modal-date {
+        font-size: 0.8em;
+    }
+
+    .modal-description {
+        font-size: 1em;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+    }
+
+    .modal-details h3 {
+        font-size: 1.1em;
+        margin: 15px 0 8px 0;
+    }
+
+    .modal-details li {
+        font-size: 0.9em;
+        margin: 6px 0;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+    }
+}
+
+/* 小さいスマートフォン向け */
+@media (max-width: 360px) {
+    .tab {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .card {
+        min-height: 90px;
+        padding: 12px;
+    }
+
+    .card-title {
+        font-size: 1em;
+        margin: 15px 0 6px 0;
+    }
+
+    .card-description {
+        font-size: 0.8em;
+    }
+
+    .modal-content {
+        padding: 12px;
+    }
+
+    .modal-title {
+        font-size: 1.2em;
     }
 }

@@ -22,31 +22,257 @@
         <div class="content">
             <div id="past" class="tab-content active">
                 <div class="card-container">
-                    <div class="card">SPAJAM2024 予選</div>
-                    <div class="card">SPAJAM道場2024</div>
-                    <div class="card">千葉大学　特別聴講生</div>
-                    <div class="card">Sensing Solution ハッカソン2024</div>
-                    <div class="card">公民館講座予約アプリ開発</div>
-                    <div class="card">UDC 2024</div>
-                    <div class="card">大手IT企業でのインターン</div>
+                    <div class="card" data-details="spajam2024">
+                        <div class="card-date">2024/03</div>
+                        <div class="card-title">SPAJAM2024 予選</div>
+                        <div class="card-description">チーム開発コンテストに参加</div>
+                    </div>
+                    <div class="card" data-details="spajam-dojo">
+                        <div class="card-date">2024/02</div>
+                        <div class="card-title">SPAJAM道場2024</div>
+                        <div class="card-description">開発スキル向上のためのワークショップ</div>
+                    </div>
+                    <div class="card" data-details="chiba-univ">
+                        <div class="card-date">2024/01</div>
+                        <div class="card-title">千葉大学　特別聴講生</div>
+                        <div class="card-description">専門分野の講義を受講</div>
+                    </div>
+                    <div class="card" data-details="sensing-hackathon">
+                        <div class="card-date">2023/12</div>
+                        <div class="card-title">Sensing Solution ハッカソン2024</div>
+                        <div class="card-description">センシング技術を活用したソリューション開発</div>
+                    </div>
+                    <div class="card" data-details="community-app">
+                        <div class="card-date">2023/11</div>
+                        <div class="card-title">公民館講座予約アプリ開発</div>
+                        <div class="card-description">地域貢献プロジェクト</div>
+                    </div>
+                    <div class="card" data-details="udc2024">
+                        <div class="card-date">2023/10</div>
+                        <div class="card-title">UDC 2024</div>
+                        <div class="card-description">ユーザー体験デザインコンテスト</div>
+                    </div>
+                    <div class="card" data-details="internship">
+                        <div class="card-date">2023/09</div>
+                        <div class="card-title">大手IT企業でのインターン</div>
+                        <div class="card-description">実務経験の獲得</div>
+                    </div>
                 </div>
             </div>
 
             <div id="now" class="tab-content">
                 <div class="card-container">
-                    <div class="card">LinkedInStudentClub</div>
+                    <div class="card" data-details="linkedin-club">
+                        <div class="card-date">2024/04</div>
+                        <div class="card-title">LinkedInStudentClub</div>
+                        <div class="card-description">学生向けプロフェッショナルネットワーク活動</div>
+                    </div>
                 </div>
             </div>
 
             <div id="future" class="tab-content">
                 <div class="card-container">
-                    <div class="card">Flutterアプリ開発インターン</div>
+                    <div class="card" data-details="flutter-intern">
+                        <div class="card-date">2024/05</div>
+                        <div class="card-title">Flutterアプリ開発インターン</div>
+                        <div class="card-description">モバイルアプリケーション開発の実践</div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 詳細モーダル -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <div class="modal-date"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-description"></div>
+                <div class="modal-details"></div>
             </div>
         </div>
     </div>
     
     <script>
+        // 詳細データ
+        const detailsData = {
+            'spajam2024': {
+                title: 'SPAJAM2024 予選',
+                date: '2024/03',
+                description: 'チーム開発コンテストに参加',
+                details: `
+                    <h3>活動内容</h3>
+                    <ul>
+                        <li>4人チームでの開発コンテスト</li>
+                        <li>24時間でのアプリケーション開発</li>
+                        <li>React Nativeを使用したモバイルアプリ開発</li>
+                    </ul>
+                    <h3>成果</h3>
+                    <ul>
+                        <li>予選通過</li>
+                        <li>チーム開発スキルの向上</li>
+                        <li>新しい技術スタックの習得</li>
+                    </ul>
+                `
+            },
+            'spajam-dojo': {
+                title: 'SPAJAM道場2024',
+                date: '2024/02',
+                description: '開発スキル向上のためのワークショップ',
+                details: `
+                    <h3>活動内容</h3>
+                    <ul>
+                        <li>週末ワークショップへの参加</li>
+                        <li>実践的な開発演習</li>
+                        <li>メンターからのフィードバック</li>
+                    </ul>
+                    <h3>学んだこと</h3>
+                    <ul>
+                        <li>効率的な開発フロー</li>
+                        <li>チーム開発のベストプラクティス</li>
+                        <li>コードレビューの重要性</li>
+                    </ul>
+                `
+            },
+            'chiba-univ': {
+                title: '千葉大学　特別聴講生',
+                date: '2024/01',
+                description: '専門分野の講義を受講',
+                details: `
+                    <h3>受講科目</h3>
+                    <ul>
+                        <li>人工知能基礎</li>
+                        <li>データサイエンス入門</li>
+                        <li>ソフトウェア工学</li>
+                    </ul>
+                    <h3>成果</h3>
+                    <ul>
+                        <li>専門知識の習得</li>
+                        <li>大学院レベルの学習経験</li>
+                        <li>研究者とのネットワーク構築</li>
+                    </ul>
+                `
+            },
+            'sensing-hackathon': {
+                title: 'Sensing Solution ハッカソン2024',
+                date: '2023/12',
+                description: 'センシング技術を活用したソリューション開発',
+                details: `
+                    <h3>プロジェクト概要</h3>
+                    <ul>
+                        <li>IoTセンサーを活用した環境モニタリングシステム開発</li>
+                        <li>リアルタイムデータ可視化</li>
+                        <li>クラウド連携機能の実装</li>
+                    </ul>
+                    <h3>使用技術</h3>
+                    <ul>
+                        <li>Raspberry Pi</li>
+                        <li>Python</li>
+                        <li>AWS IoT Core</li>
+                    </ul>
+                `
+            },
+            'community-app': {
+                title: '公民館講座予約アプリ開発',
+                date: '2023/11',
+                description: '地域貢献プロジェクト',
+                details: `
+                    <h3>プロジェクト概要</h3>
+                    <ul>
+                        <li>地域住民向け予約システムの開発</li>
+                        <li>管理者向けダッシュボードの実装</li>
+                        <li>ユーザーテストの実施</li>
+                    </ul>
+                    <h3>成果</h3>
+                    <ul>
+                        <li>予約率30%向上</li>
+                        <li>管理者の業務効率化</li>
+                        <li>地域からの感謝状</li>
+                    </ul>
+                `
+            },
+            'udc2024': {
+                title: 'UDC 2024',
+                date: '2023/10',
+                description: 'ユーザー体験デザインコンテスト',
+                details: `
+                    <h3>活動内容</h3>
+                    <ul>
+                        <li>ユーザーリサーチ</li>
+                        <li>プロトタイプ作成</li>
+                        <li>ユーザビリティテスト</li>
+                    </ul>
+                    <h3>成果</h3>
+                    <ul>
+                        <li>最優秀賞受賞</li>
+                        <li>UXデザインスキルの向上</li>
+                        <li>実装可能なデザインの提案</li>
+                    </ul>
+                `
+            },
+            'internship': {
+                title: '大手IT企業でのインターン',
+                date: '2023/09',
+                description: '実務経験の獲得',
+                details: `
+                    <h3>業務内容</h3>
+                    <ul>
+                        <li>フロントエンド開発</li>
+                        <li>コードレビュー</li>
+                        <li>チーム開発プロセスへの参加</li>
+                    </ul>
+                    <h3>学んだこと</h3>
+                    <ul>
+                        <li>実務での開発フロー</li>
+                        <li>チーム開発の重要性</li>
+                        <li>プロフェッショナルな開発環境</li>
+                    </ul>
+                `
+            },
+            'linkedin-club': {
+                title: 'LinkedInStudentClub',
+                date: '2024/04',
+                description: '学生向けプロフェッショナルネットワーク活動',
+                details: `
+                    <h3>活動内容</h3>
+                    <ul>
+                        <li>キャリア開発ワークショップの開催</li>
+                        <li>企業訪問の企画・実施</li>
+                        <li>メンターシッププログラムの運営</li>
+                    </ul>
+                    <h3>目標</h3>
+                    <ul>
+                        <li>学生のキャリア意識向上</li>
+                        <li>企業とのネットワーク構築</li>
+                        <li>リーダーシップスキルの育成</li>
+                    </ul>
+                `
+            },
+            'flutter-intern': {
+                title: 'Flutterアプリ開発インターン',
+                date: '2024/05',
+                description: 'モバイルアプリケーション開発の実践',
+                details: `
+                    <h3>予定される業務</h3>
+                    <ul>
+                        <li>Flutterを使用したアプリ開発</li>
+                        <li>UI/UXデザインの実装</li>
+                        <li>バックエンド連携</li>
+                    </ul>
+                    <h3>目標</h3>
+                    <ul>
+                        <li>Flutter開発スキルの習得</li>
+                        <li>実務でのアプリ開発経験</li>
+                        <li>チーム開発プロセスの理解</li>
+                    </ul>
+                `
+            }
+        };
+
         function initializeTabNavigation() {
             console.log("タブ切り替えスクリプトが読み込まれました");
 
@@ -81,6 +307,36 @@
                 });
             });
         }
+
+        // モーダル関連の機能
+        const modal = document.getElementById('detail-modal');
+        const closeBtn = document.querySelector('.close-modal');
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const detailsId = card.dataset.details;
+                const details = detailsData[detailsId];
+                
+                if (details) {
+                    document.querySelector('.modal-title').textContent = details.title;
+                    document.querySelector('.modal-date').textContent = details.date;
+                    document.querySelector('.modal-description').textContent = details.description;
+                    document.querySelector('.modal-details').innerHTML = details.details;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
 
         // ページ読み込み時にタブナビゲーションを初期化
         document.addEventListener('DOMContentLoaded', initializeTabNavigation);
