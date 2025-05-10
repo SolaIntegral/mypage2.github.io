@@ -9,79 +9,81 @@
     <title>Overview</title>
 </head>
 <body>
- <!-- タブナビゲーション -->
- <div class="timeline-container">
-    <div class="tab-container">
-        <span class="tab active" data-tab="past">Past</span>
-        <span class="tab" data-tab="now">Now</span>
-        <span class="tab" data-tab="future">Future</span>
-    </div>
-    <div class="timeline-arrow"></div>
-</div>
+    <!-- ホワイトボードコンテナ -->
+    <div class="timeline-container">
+        <!-- タブナビゲーション -->
+        <div class="tab-container">
+            <span class="tab active" data-tab="past">Past</span>
+            <span class="tab" data-tab="now">Now</span>
+            <span class="tab" data-tab="future">Future</span>
+        </div>
 
-<!-- コンテンツエリア -->
-<div class="content">
-    <div id="past" class="tab-content active">
-        <div class="card-container">
-            <div class="card">SPAJAM2024 予選</div>
-            <div class="card">SPAJAM道場2024</div>
-            <div class="card">千葉大学　特別聴講生</div>
-            <div class="card">Sensing Solution ハッカソン2024</div>
-            <div class="card">公民館講座予約アプリ開発</div>
-            <div class="card">UDC 2024</div>
-            <div class="card">大手IT企業でのインターン</div>
+        <!-- コンテンツエリア -->
+        <div class="content">
+            <div id="past" class="tab-content active">
+                <div class="card-container">
+                    <div class="card">SPAJAM2024 予選</div>
+                    <div class="card">SPAJAM道場2024</div>
+                    <div class="card">千葉大学　特別聴講生</div>
+                    <div class="card">Sensing Solution ハッカソン2024</div>
+                    <div class="card">公民館講座予約アプリ開発</div>
+                    <div class="card">UDC 2024</div>
+                    <div class="card">大手IT企業でのインターン</div>
+                </div>
+            </div>
+
+            <div id="now" class="tab-content">
+                <div class="card-container">
+                    <div class="card">LinkedInStudentClub</div>
+                </div>
+            </div>
+
+            <div id="future" class="tab-content">
+                <div class="card-container">
+                    <div class="card">Flutterアプリ開発インターン</div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="now" class="tab-content">
-        <div class="card-container">
-            <div class="card">LinkedInStudentClub</div>
-        </div>
-    </div>
-
-    <div id="future" class="tab-content">
-        <div class="card-container">
-            <div class="card">Flutterアプリ開発インターン</div>
-        </div>
-    </div>
-</div>
     
     <script>
         function initializeTabNavigation() {
-        console.log("タブ切り替えスクリプトが読み込まれました");
+            console.log("タブ切り替えスクリプトが読み込まれました");
 
-        const tabs = document.querySelectorAll(".tab");
-        const contents = document.querySelectorAll(".tab-content");
+            const tabs = document.querySelectorAll(".tab");
+            const contents = document.querySelectorAll(".tab-content");
 
-        if (tabs.length === 0 || contents.length === 0) {
-            console.warn("タブ要素またはコンテンツが見つかりません。スクリプトをスキップします。");
-            return;
+            if (tabs.length === 0 || contents.length === 0) {
+                console.warn("タブ要素またはコンテンツが見つかりません。スクリプトをスキップします。");
+                return;
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    console.log(`タブがクリックされました: ${tab.dataset.tab}`);
+
+                    // すべてのタブの `active` クラスを削除
+                    tabs.forEach(t => t.classList.remove("active"));
+                    // すべてのコンテンツの `active` クラスを削除
+                    contents.forEach(c => c.classList.remove("active"));
+
+                    // クリックされたタブをアクティブ化
+                    tab.classList.add("active");
+
+                    // 対応するコンテンツを表示
+                    const target = document.getElementById(tab.dataset.tab);
+                    if (target) {
+                        target.classList.add("active");
+                        console.log(`表示するコンテンツ: ${tab.dataset.tab}`);
+                    } else {
+                        console.error("対象のタブコンテンツが見つかりません");
+                    }
+                });
+            });
         }
 
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                console.log(`タブがクリックされました: ${tab.dataset.tab}`);
-
-                // すべてのタブの `active` クラスを削除
-                tabs.forEach(t => t.classList.remove("active"));
-                // すべてのコンテンツの `active` クラスを削除
-                contents.forEach(c => c.classList.remove("active"));
-
-                // クリックされたタブをアクティブ化
-                tab.classList.add("active");
-
-                // 対応するコンテンツを表示
-                const target = document.getElementById(tab.dataset.tab);
-                if (target) {
-                    target.classList.add("active");
-                    console.log(`表示するコンテンツ: ${tab.dataset.tab}`);
-                } else {
-                    console.error("対象のタブコンテンツが見つかりません");
-                }
-            });
-        });
-    }
-
+        // ページ読み込み時にタブナビゲーションを初期化
+        document.addEventListener('DOMContentLoaded', initializeTabNavigation);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js"></script>
